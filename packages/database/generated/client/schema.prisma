@@ -1,0 +1,153 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider      = "prisma-client-js"
+  output        = "../generated/client"
+  binaryTargets = ["native", "darwin-arm64"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String  @id @default(cuid())
+  clerkId   String  @unique // Clerk user ID for syncing
+  email     String  @unique
+  firstName String?
+  lastName  String?
+  imageUrl  String?
+  role      String?
+  company   String?
+  timezone  String?
+  bio       String?
+
+  // Subscription and usage tracking
+  plan     String  @default("free")
+  isActive Boolean @default(true)
+
+  // Onboarding tracking
+  onboardingComplete Boolean @default(false)
+  onboardingStep     String? // current step if incomplete
+  preferences        Json? // user preferences collected during onboarding
+
+  // Metadata
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  lastSeenAt DateTime @default(now())
+
+  // Relations
+  connectors Connector[]
+  reports    Report[]
+
+  @@map("users")
+}
+
+model Connector {
+  id       String   @id @default(cuid())
+  userId   String
+  name     String
+  type     String // slack, teams, github, discord, etc.
+  status   String   @default("pending") // pending, connected, error, disconnected
+  config   Json? // Encrypted configuration
+  channels String[] // Array of channel IDs/names
+
+  // Metrics
+  messagesPerDay Int      @default(0)
+  lastSync       DateTime @default(now())
+  isActive       Boolean  @default(true)
+
+  // Metadata
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user              User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messages          Message[]
+  slackInstallation SlackInstallation?
+
+  @@map("connectors")
+}
+
+model Message {
+  id          String   @id @default(cuid())
+  connectorId String
+  externalId  String? // ID from the external service
+  content     String
+  author      String
+  channel     String?
+  timestamp   DateTime
+  type        String   @default("message") // message, reaction, file, etc.
+  metadata    Json? // Additional data from the service
+
+  // Metadata
+  createdAt DateTime @default(now())
+
+  // Relations
+  connector Connector @relation(fields: [connectorId], references: [id], onDelete: Cascade)
+
+  @@unique([connectorId, externalId])
+  @@map("messages")
+}
+
+model Report {
+  id       String   @id @default(cuid())
+  userId   String
+  title    String
+  content  Json // Generated report content
+  channels String[] // Channels included in report
+  status   String   @default("generating") // generating, completed, failed
+
+  // AI Analysis
+  summary  String?
+  insights Json? // Key insights and recommendations
+
+  // Metadata
+  generatedAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("reports")
+}
+
+model SlackInstallation {
+  id          String @id @default(cuid())
+  connectorId String @unique
+
+  // Team/Workspace information
+  teamId   String
+  teamName String?
+
+  // OAuth tokens
+  botToken  String // Encrypted bot access token
+  userToken String? // Encrypted user access token (if user scope granted)
+
+  // Bot information
+  botUserId  String?
+  botScopes  String[] // Bot scopes granted
+  userScopes String[] // User scopes granted
+
+  // Installation metadata
+  appId               String
+  enterpriseId        String? // For enterprise grid installations
+  isEnterpriseInstall Boolean @default(false)
+
+  // Token metadata
+  tokenType String    @default("bot") // bot, user
+  expiresAt DateTime? // Token expiration if applicable
+
+  // Metadata
+  installedAt DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  connector Connector @relation(fields: [connectorId], references: [id], onDelete: Cascade)
+
+  @@unique([teamId, appId])
+  @@map("slack_installations")
+}

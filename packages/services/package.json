@@ -1,0 +1,13 @@
+{
+    "name": "@xevon/services",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "services:start": "docker-compose -f ../../docker-compose.yml up -d && ../../scripts/wait-for-db.sh && docker-compose -f ../../docker-compose.yml logs -f",
+        "services:stop": "docker-compose -f ../../docker-compose.yml down",
+        "services:restart": "docker-compose -f ../../docker-compose.yml restart",
+        "services:status": "docker-compose -f ../../docker-compose.yml ps",
+        "services:logs": "docker-compose -f ../../docker-compose.yml logs -f",
+        "services:clean": "docker-compose -f ../../docker-compose.yml down -v --remove-orphans"
+    }
+}

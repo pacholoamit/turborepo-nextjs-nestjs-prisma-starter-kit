@@ -1,0 +1,41 @@
+{
+    "name": "xevon-ai",
+    "private": true,
+    "scripts": {
+        "build": "turbo run build",
+        "dev": "turbo run dev",
+        "dev:apps": "turbo run dev:apps --parallel",
+        "start": "turbo run start",
+        "services:start": "turbo run services:start",
+        "services:stop": "turbo run services:stop",
+        "services:restart": "turbo run services:restart",
+        "services:status": "turbo run services:status",
+        "services:logs": "turbo run services:logs",
+        "services:clean": "turbo run services:clean",
+        "db:generate": "turbo run db:generate",
+        "db:migrate": "turbo run db:migrate",
+        "db:migrate:dev": "turbo run db:migrate:dev",
+        "db:reset": "turbo run db:reset",
+        "db:deploy": "turbo run db:deploy",
+        "db:studio": "turbo run db:studio",
+        "lint": "turbo run lint",
+        "format": "turbo run format",
+        "check-types": "turbo run check-types",
+        "test": "turbo run test",
+        "test:e2e": "turbo run test:e2e",
+        "clean": "turbo run clean"
+    },
+    "devDependencies": {
+        "prettier": "^3.5.3",
+        "turbo": "^2.4.4",
+        "typescript": "5.8.2"
+    },
+    "engines": {
+        "node": ">=18"
+    },
+    "packageManager": "bun@1.2.4",
+    "workspaces": [
+        "apps/*",
+        "packages/*"
+    ]
+}

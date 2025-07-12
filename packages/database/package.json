@@ -1,0 +1,35 @@
+{
+    "name": "@app/database",
+    "version": "0.0.0",
+    "exports": {
+        ".": {
+            "import": "./dist/index.js",
+            "require": "./dist/index.js",
+            "types": "./dist/index.d.ts"
+        }
+    },
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "devDependencies": {
+        "prettier": "^3.5.3",
+        "prisma": "^6.4.1",
+        "typescript": "^5.0.0"
+    },
+    "dependencies": {
+        "@prisma/client": "^6.4.1"
+    },
+    "scripts": {
+        "db:generate": "prisma generate",
+        "db:migrate": "prisma db push",
+        "db:migrate:dev": "prisma migrate dev",
+        "db:reset": "prisma migrate reset --force",
+        "db:deploy": "prisma migrate deploy",
+        "db:studio": "prisma studio",
+        "dev": "tsc --watch --preserveWatchOutput",
+        "build": "tsc",
+        "clean": "rm -rf dist",
+        "check-types": "tsc --noEmit",
+        "format": "prettier --write \"src/**/*.ts\" \"prisma/**/*.prisma\"",
+        "lint": "echo 'No linting configured for database package'"
+    }
+}

@@ -1,0 +1,127 @@
+{
+    "$schema": "https://turbo.build/schema.json",
+    "ui": "tui",
+    "globalDependencies": [
+        ".env*",
+        "docker-compose.yml"
+    ],
+    "tasks": {
+        "dev": {
+            "dependsOn": [
+                "^db:generate",
+                "db:migrate"
+            ],
+            "cache": false,
+            "persistent": true
+        },
+        "dev:apps": {
+            "dependsOn": [
+                "^db:generate"
+            ],
+            "cache": false,
+            "persistent": true
+        },
+        "services:start": {
+            "cache": false
+        },
+        "services:stop": {
+            "cache": false
+        },
+        "services:restart": {
+            "cache": false
+        },
+        "services:status": {
+            "cache": false
+        },
+        "services:logs": {
+            "cache": false,
+            "persistent": true
+        },
+        "services:clean": {
+            "cache": false
+        },
+        "build": {
+            "dependsOn": [
+                "^build",
+                "^db:generate"
+            ],
+            "inputs": [
+                "$TURBO_DEFAULT$",
+                ".env*"
+            ],
+            "outputs": [
+                ".next/**",
+                "!.next/cache/**",
+                "dist/**"
+            ]
+        },
+        "start": {
+            "dependsOn": [
+                "build"
+            ],
+            "cache": false,
+            "persistent": true
+        },
+        "db:generate": {
+            "cache": false
+        },
+        "db:migrate": {
+            "dependsOn": [
+                "services:start",
+                "^db:generate"
+            ],
+            "cache": false
+        },
+        "db:migrate:dev": {
+            "dependsOn": [
+                "^db:generate"
+            ],
+            "cache": false,
+            "persistent": true
+        },
+        "db:reset": {
+            "cache": false
+        },
+        "db:deploy": {
+            "cache": false
+        },
+        "db:studio": {
+            "cache": false,
+            "persistent": true
+        },
+        "lint": {
+            "dependsOn": [
+                "^lint"
+            ],
+            "outputs": []
+        },
+        "check-types": {
+            "dependsOn": [
+                "^check-types"
+            ],
+            "outputs": []
+        },
+        "format": {
+            "cache": false,
+            "outputs": []
+        },
+        "test": {
+            "dependsOn": [
+                "^db:generate"
+            ],
+            "outputs": [
+                "coverage/**"
+            ]
+        },
+        "test:e2e": {
+            "dependsOn": [
+                "^db:generate",
+                "^build"
+            ],
+            "cache": false
+        },
+        "clean": {
+            "cache": false
+        }
+    }
+}
