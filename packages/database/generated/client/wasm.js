@@ -122,84 +122,10 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
-  clerkId: 'clerkId',
   email: 'email',
   firstName: 'firstName',
   lastName: 'lastName',
-  imageUrl: 'imageUrl',
-  role: 'role',
-  company: 'company',
-  timezone: 'timezone',
-  bio: 'bio',
-  plan: 'plan',
-  isActive: 'isActive',
-  onboardingComplete: 'onboardingComplete',
-  onboardingStep: 'onboardingStep',
-  preferences: 'preferences',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  lastSeenAt: 'lastSeenAt'
-};
-
-exports.Prisma.ConnectorScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  name: 'name',
-  type: 'type',
-  status: 'status',
-  config: 'config',
-  channels: 'channels',
-  messagesPerDay: 'messagesPerDay',
-  lastSync: 'lastSync',
-  isActive: 'isActive',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.MessageScalarFieldEnum = {
-  id: 'id',
-  connectorId: 'connectorId',
-  externalId: 'externalId',
-  content: 'content',
-  author: 'author',
-  channel: 'channel',
-  timestamp: 'timestamp',
-  type: 'type',
-  metadata: 'metadata',
-  createdAt: 'createdAt'
-};
-
-exports.Prisma.ReportScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  title: 'title',
-  content: 'content',
-  channels: 'channels',
-  status: 'status',
-  summary: 'summary',
-  insights: 'insights',
-  generatedAt: 'generatedAt',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.SlackInstallationScalarFieldEnum = {
-  id: 'id',
-  connectorId: 'connectorId',
-  teamId: 'teamId',
-  teamName: 'teamName',
-  botToken: 'botToken',
-  userToken: 'userToken',
-  botUserId: 'botUserId',
-  botScopes: 'botScopes',
-  userScopes: 'userScopes',
-  appId: 'appId',
-  enterpriseId: 'enterpriseId',
-  isEnterpriseInstall: 'isEnterpriseInstall',
-  tokenType: 'tokenType',
-  expiresAt: 'expiresAt',
-  installedAt: 'installedAt',
-  updatedAt: 'updatedAt'
+  imageUrl: 'imageUrl'
 };
 
 exports.Prisma.SortOrder = {
@@ -207,24 +133,9 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.NullableJsonNullValueInput = {
-  DbNull: Prisma.DbNull,
-  JsonNull: Prisma.JsonNull
-};
-
-exports.Prisma.JsonNullValueInput = {
-  JsonNull: Prisma.JsonNull
-};
-
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
-};
-
-exports.Prisma.JsonNullValueFilter = {
-  DbNull: Prisma.DbNull,
-  JsonNull: Prisma.JsonNull,
-  AnyNull: Prisma.AnyNull
 };
 
 exports.Prisma.NullsOrder = {
@@ -234,11 +145,7 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  User: 'User',
-  Connector: 'Connector',
-  Message: 'Message',
-  Report: 'Report',
-  SlackInstallation: 'SlackInstallation'
+  User: 'User'
 };
 
 /**

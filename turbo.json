@@ -8,6 +8,7 @@
     "tasks": {
         "dev": {
             "dependsOn": [
+                "services:start",
                 "^db:generate",
                 "db:migrate"
             ],
@@ -63,6 +64,9 @@
             "persistent": true
         },
         "db:generate": {
+            "dependsOn": [
+                "services:start"
+            ],
             "cache": false
         },
         "db:migrate": {
