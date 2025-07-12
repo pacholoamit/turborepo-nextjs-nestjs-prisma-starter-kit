@@ -1,22 +1,27 @@
 # 🚀 Full-Stack TypeScript Monorepo Template
 
 <div align="center">
+  <img src="./assets/hero.png" alt="Project Hero" width="800" />
+  
+  <br /><br />
+  
   <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
   <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js" />
   <img src="https://img.shields.io/badge/Nest.js-E0234E?style=for-the-badge&logo=nestjs&logoColor=white" alt="NestJS" />
   <img src="https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white" alt="Prisma" />
   <img src="https://img.shields.io/badge/TurboRepo-EF4444?style=for-the-badge&logo=turborepo&logoColor=white" alt="TurboRepo" />
+  <img src="https://img.shields.io/badge/shadcn%2Fui-000000?style=for-the-badge&logo=shadcnui&logoColor=white" alt="shadcn/ui" />
 </div>
 
 <br />
 
-> A production-ready monorepo template featuring Next.js 15, NestJS, Prisma ORM, and TurboRepo. Built with TypeScript, optimized for performance, and designed for scalability.
+> A production-ready monorepo template featuring Next.js 15, NestJS, Prisma ORM, shadcn/ui, and TurboRepo. Built with TypeScript, optimized for performance, and designed for scalability.
 
 ## ✨ Features
 
 - **🏗️ Monorepo Architecture** - Powered by TurboRepo for optimal build performance
 - **⚡ Full-Stack TypeScript** - End-to-end type safety across the entire stack
-- **🎨 Modern Frontend** - Next.js 15 with App Router, React 19, and Tailwind CSS 4
+- **🎨 Modern Frontend** - Next.js 15 with App Router, React 19, Tailwind CSS 4, and shadcn/ui
 - **🔧 Robust Backend** - NestJS with modular architecture and dependency injection
 - **🗄️ Database Ready** - Prisma ORM with PostgreSQL, migrations, and type-safe queries
 - **🐳 Docker Development** - Pre-configured PostgreSQL and Redis containers
@@ -120,7 +125,7 @@ bun run test:e2e        # Run end-to-end tests
 
 ### Frontend (`/apps/web`)
 - **Framework**: Next.js 15 with App Router
-- **Styling**: Tailwind CSS 4 with custom design system
+- **Styling**: Tailwind CSS 4 with custom design system and shadcn/ui components
 - **State Management**: Zustand for client state
 - **API Communication**: Native fetch with type-safe endpoints
 - **Authentication**: Ready for integration (Clerk/NextAuth)
@@ -176,7 +181,7 @@ Each app has its own `.env` file:
 
 - **Runtime**: [Bun](https://bun.sh/) (Node.js compatible)
 - **Monorepo**: [TurboRepo](https://turbo.build/)
-- **Frontend**: [Next.js 15](https://nextjs.org/), [React 19](https://react.dev/), [Tailwind CSS 4](https://tailwindcss.com/)
+- **Frontend**: [Next.js 15](https://nextjs.org/), [React 19](https://react.dev/), [Tailwind CSS 4](https://tailwindcss.com/), [shadcn/ui](https://ui.shadcn.com/)
 - **Backend**: [NestJS](https://nestjs.com/), [Prisma](https://www.prisma.io/)
 - **Database**: [PostgreSQL](https://www.postgresql.org/), [Redis](https://redis.io/)
 - **DevOps**: [Docker](https://www.docker.com/), [Docker Compose](https://docs.docker.com/compose/)
