@@ -2,7 +2,7 @@
     "name": "app",
     "private": true,
     "scripts": {
-        "initialize": "echo 'Initializing environment files...' && (test -f apps/web/.env.example && ! test -f apps/web/.env && cp apps/web/.env.example apps/web/.env && echo 'Created apps/web/.env') || echo 'Skipped apps/web/.env' && (test -f apps/server/.env.example && ! test -f apps/server/.env && cp apps/server/.env.example apps/server/.env && echo 'Created apps/server/.env') || echo 'Skipped apps/server/.env' && (test -f packages/database/.env.example && ! test -f packages/database/.env && cp packages/database/.env.example packages/database/.env && echo 'Created packages/database/.env') || echo 'Skipped packages/database/.env'",
+        "initialize": "./scripts/initialize.sh",
         "build": "turbo run build",
         "dev": "turbo run dev",
         "dev:apps": "turbo run dev:apps --parallel",
